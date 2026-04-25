@@ -1,3 +1,28 @@
+# to run locally:
+1. Create env: `Conda create -n flood python=3.11`
+2. Activate env: `conda activate flood`
+3. Install dependencies: `pip install -r requirements.txt`
+   1. If above command fails: `conda install --file requirements.txt`
+4. run pipeline: `python run_pipeline.py` 
+5. go to api folder: `cd api`
+6. activate api: `python -m uvicorn api.main:app --port 8000 --reload`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 🌊 Ounila Flood Decision System
 ### Tighza, Morocco — Anti-Atlas Flash Flood Risk Platform
 

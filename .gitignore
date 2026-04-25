@@ -1,4 +1,6 @@
-*.tif
+# *.tif
+*.json
+*.geojson
 *.shp
 *.dbf
 *.prj
@@ -9,3 +11,7 @@ node_modules/
 venv
 flood
 *cache
+__pycache__
+outputs
+db
+raw
