@@ -5,3 +5,6 @@
 data/raw/
 *.dss
 node_modules/
+
+venv
+flood
