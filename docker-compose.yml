@@ -1,0 +1,47 @@
+
+services:
+  mountainmapping-postgres:
+    image: postgres:15
+    restart: always
+    container_name: mountainmapping-postgres
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    ports:
+      - '5432:5432'
+    volumes:
+    # create named docker volume so that the data is persistently stored even when the containers are stopped or deleted
+      - mountainmapping_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${DATABASE_USER}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+    # specifying where to find the .env file, so that Docker can access environment variables inside the container 
+    # (this is not used to tell Docker where to access env variables during container building)
+    env_file:
+      - ../.env
+
+  mountainmapping:
+    restart: always
+    build: .
+    container_name: mountainmapping
+    ports:
+      - '8000:8000'
+    environment:
+      - DEBUG=${DEBUG}
+      - DATABASE_URL=${DATABASE_URL}
+    volumes:
+    # Bind mount between Django project and Docker container enables file changes in one environment to be replicated in the other
+      - .:/app 
+    depends_on:
+      mountainmapping-postgres:
+        condition: service_healthy
+    # specifying where to find the .env file, so that Docker can access environment variables inside the container 
+    # (this is not used to tell Docker where to access env variables during container building)
+    env_file:
+      - ../.env
+
+volumes:
+  mountainmapping_postgres_data:
