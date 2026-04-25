@@ -1,0 +1,7 @@
+*.tif
+*.shp
+*.dbf
+*.prj
+data/raw/
+*.dss
+node_modules/
