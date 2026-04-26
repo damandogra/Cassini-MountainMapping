@@ -1,33 +1,8 @@
 # to run locally:
-1. Create env: `Conda create -n flood python=3.11`
-2. Activate env: `conda activate flood`
-3. Install dependencies: `pip install -r requirements.txt`
-   1. If above command fails: `conda install --file requirements.txt`
-4. run pipeline: `python run_pipeline.py` 
-5. go to api folder: `cd api`
-6. activate api: `python -m uvicorn api.main:app --port 8000 --reload`
+you can use `run.md` to run the script
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 🌊 Ounila Flood Decision System
+# 🌊 Atlas
 ### Tighza, Morocco — Anti-Atlas Flash Flood Risk Platform
-
-A three-person hackathon project that builds a **complete, operational flood decision-support system** for the Ounila River catchment. The system takes raw terrain and rainfall data, runs a hydrological model, routes floods across the landscape, and delivers an interactive web dashboard for emergency planners — all within 48 hours.
-
 ---
 
 ## Table of Contents
