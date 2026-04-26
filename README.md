@@ -26,17 +26,17 @@ The study area is the **Tighza region in the Atlas Mountains, Morocco**.
 ```
 MountainMapping/
 ├── src/
-│   ├── main.py                         # Entry point (orchestrates the pipeline)
+│   ├── main.py                         # TBD
 │   └── scripts/
 │       ├── coordinates.py              # Study area bounding box (Tighza, Morocco)
 │       ├── evalscripts.py              # Sentinel Hub evalscripts (NDVI computation)
 │       ├── engine.py                   # HydrologyEngine (HEC-HMS, RUSLE, HEC-RAS 2D)
 │       ├── get_precipitation.py        # Open-Meteo API client (current + ERA5 historical)
 │       ├── gevandgumble.py             # GEV/Gumbel distribution fitting for return periods
-│       ├── hec_inputs.py               # Input generation for HEC models
+│       ├── hec_inputs.py               # Entry point (orchestrates the pipeline)
 │       └── export.py                   # GeoTIFF and PNG export utilities
-├── tests/                              # Test suite
-├── docs/                               # Documentation
+├── tests/                              # Test suite (TBD)
+├── docs/                               # Documentation (TBD)
 ├── Dockerfile                          # (future use) Multi-stage Docker build
 ├── docker-compose.yml                  # (future use) Postgres + FastAPI services
 └── requirements.txt                    # Python dependencies
@@ -72,7 +72,7 @@ pip install -r requirements.txt
 ### Run the pipeline
 
 ```bash
-python src/main.py
+python src/scripts/hec_inputs.py
 ```
 
 This will:
