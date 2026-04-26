@@ -1,0 +1,17 @@
+# *.tif
+*.json
+*.geojson
+*.shp
+*.dbf
+*.prj
+data/raw/
+*.dss
+node_modules/
+
+venv
+flood
+*cache
+__pycache__
+outputs
+db
+raw
