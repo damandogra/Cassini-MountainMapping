@@ -16,7 +16,7 @@ from coordinates import Coordinates, roi_bbox
 from get_precipitation import get_precipitation_data
 from evalscripts import NDVI
 from engine import HydrologyEngine
-from export import exportar_geotiff
+from export import exportar_geotiff, export_erosion_png
 
 load_dotenv() 
 
@@ -39,6 +39,8 @@ CDSE_DEM = DataCollection.define("CDSE_DEM", api_id=DataCollection.DEM_COPERNICU
 # Get bounding box coordinates from the polygon
 min_lon, min_lat, max_lon, max_lat = roi_bbox.geometry.bounds
 geotiff_coords = [min_lon, min_lat, max_lon, max_lat]
+print("📍 COORDENADAS PARA REACT BBOX:")
+print(f"min_lon={min_lon}, min_lat={min_lat}, max_lon={max_lon}, max_lat={max_lat}")
 
 # Calculate distance in degrees
 delta_lon = max_lon - min_lon
@@ -163,8 +165,26 @@ for return_period, rain_mm in rainfall_scenarios.items():
     # D. Export GeoTIFFs
     depth_filename = f"depth_{return_period}.tif"
     velocity_filename = f"velocity_{return_period}.tif"
+    flow_direction_filename = f"flow_direction_{return_period}.tif"
     
     exportar_geotiff(depth_meters, depth_filename, geotiff_coords)
     exportar_geotiff(velocity, velocity_filename, geotiff_coords)
+    exportar_geotiff(angle, flow_direction_filename, geotiff_coords)
 
 print("\n✅ Data batch completed successfully!")
+
+np.save("ndvi_base.npy", ndvi_matrix)
+np.save("dem_base.npy", elevation_matrix)
+np.save("slope_base.npy", slope_matrix)
+exportar_geotiff(ndvi_matrix, "ndvi_base.tif", geotiff_coords)
+print("⛰️ Calculando Riesgo de Erosión (RUSLE)...")
+
+# Llamas a tu función (asegúrate de que los parámetros coinciden con tu código)
+# Asumimos que hydro_engine.calcular_rusle() devuelve una matriz NumPy
+erosion_matrix = hydro_engine.calcular_riesgo_erosion_rusle(
+    precipitation_matrix,   # Lluvia (R)
+    slope_matrix,    # Relieve (LS)
+    ndvi_matrix      # Vegetación (C)
+)
+
+export_erosion_png(erosion_matrix, "erosion_rusle.png")
