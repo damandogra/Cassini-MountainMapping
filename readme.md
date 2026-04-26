@@ -2,7 +2,7 @@
 you can use `run.md` to run the script
 
 # 🌊 Atlas
-### Tighza, Morocco — Anti-Atlas Flash Flood Risk Platform
+### Tighza, Morocco
 ---
 
 ## Table of Contents
