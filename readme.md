@@ -1,6 +1,9 @@
 # 🌊 Atlas — Flash Flood Decision Support System
 ### Tighza / Ounila Valley, Morocco · Cassini Hackathon
 
+<img width="834" height="522" alt="image" src="https://github.com/user-attachments/assets/936222e1-dd6c-4680-a00e-98d453e86905" />
+
+
 A full-stack flood risk platform that answers one question for emergency planners:
 
 > **"If it rains hard tonight, which roads close, which villages get cut off, and what should we do first?"**
